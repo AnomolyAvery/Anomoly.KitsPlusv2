@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Version>0.0.1</Version>
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+    <RootNamespace>Anomoly.KitsPlusv2</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="lib\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <None Remove="lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\lib\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="com.rlabrecque.steamworks.net">
+      <HintPath>..\lib\com.rlabrecque.steamworks.net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Rocket.API">
+      <HintPath>..\lib\Rocket.API.dll</HintPath>
+    </Reference>
+    <Reference Include="Rocket.Core">
+      <HintPath>..\lib\Rocket.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Rocket.Unturned">
+      <HintPath>..\lib\Rocket.Unturned.dll</HintPath>
+    </Reference>
+    <Reference Include="SDG.NetTransport">
+      <HintPath>..\lib\SDG.NetTransport.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\lib\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\lib\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <_GlobalJsonStartingDir Remove="lib\**" />
+  </ItemGroup>
+
+</Project>
