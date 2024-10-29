@@ -49,4 +49,8 @@
     <_GlobalJsonStartingDir Remove="lib\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OpenMod.UniTask" Version="2021.2.4.1" />
+  </ItemGroup>
+
 </Project>
