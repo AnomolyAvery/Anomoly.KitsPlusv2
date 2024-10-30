@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Rocket.API;
 using Rocket.Unturned.Player;
+using System;
 using System.Collections.Generic;
 
 namespace Anomoly.KitsPlusv2.Commands
@@ -36,13 +37,28 @@ namespace Anomoly.KitsPlusv2.Commands
             var name = args[0];
 
             var kit = _plugin.KitRepository.GetKitByName(name);
-            if(kit == null)
+            if(kit == null || !caller.HasPermission($"kit.{kit.Name.ToLower()}"))
             {
                 message = _plugin.Translate("command_kit_not_found", name);
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
                 return UniTask.CompletedTask;
             }
 
+            var gCooldown = _plugin.CooldownManager.GetTimeLeftForGlobal(caller.Id);
+            if(gCooldown > 0)
+            {
+                message = _plugin.Translate("command_kit_global_cooldown", TimeSpan.FromSeconds(gCooldown).ToReadableString());
+                FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
+                return UniTask.CompletedTask;
+            }
+
+            var kCooldown = _plugin.CooldownManager.GetTimeLeftForKit(caller.Id, kit.Name);
+            if(kCooldown > 0)
+            {
+                message = _plugin.Translate("command_kit_kit_cooldown", TimeSpan.FromSeconds(kCooldown).ToReadableString(),kit.Name);
+                FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
+                return UniTask.CompletedTask;
+            }
             
             FastTaskDispatcher.QueueOnMainThread(() =>
             {
@@ -51,6 +67,9 @@ namespace Anomoly.KitsPlusv2.Commands
                 message = _plugin.Translate("command_kit_redeemed", kit.Name);
                 ChatUtility.Say(caller, message);
             });
+
+            _plugin.CooldownManager.SetGlobalCooldown(caller.Id);
+            _plugin.CooldownManager.SetKitCooldown(caller.Id, kit.Name);
 
             return UniTask.CompletedTask;
         }

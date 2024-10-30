@@ -7,10 +7,12 @@ namespace Anomoly.KitsPlusv2
     public class KitsPlusConfiguration : IRocketPluginConfiguration
     {
         public string Repository { get; set; }
+        public int GlobalCooldownSeconds { get; set; }
         public List<Kit> Kits { get; set; }
         public void LoadDefaults()
         {
             Repository = "default";
+            GlobalCooldownSeconds = 10;
             Kits = new List<Kit>()
             {
                 new Kit("Starter", new List<KitItem>()
@@ -25,7 +27,7 @@ namespace Anomoly.KitsPlusv2
                         Tactical = new Attachment(151, 100),
                         Magazine = new Attachment(17, 100)
                     }
-                }, 1000, 17)
+                }, 1000, 17, 120)
             };
         }
     }
