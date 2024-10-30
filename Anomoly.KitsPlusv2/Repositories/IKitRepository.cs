@@ -12,5 +12,8 @@ namespace Anomoly.KitsPlusv2.Repositories
         Kit[] GetAllKits(IRocketPlayer player);
 
         Kit GetKitByName(string name);
+
+        void DeleteKit(Kit kit);
+        void CreateKit(Kit kit);
     }
 }

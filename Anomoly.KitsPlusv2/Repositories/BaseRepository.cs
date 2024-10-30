@@ -9,6 +9,18 @@ namespace Anomoly.KitsPlusv2.Repositories
     {
         public string Name => "default";
 
+        public void CreateKit(Kit kit)
+        {
+            KitsPlusPlugin.Instance.Configuration.Instance.Kits.Add(kit);
+            KitsPlusPlugin.Instance.Configuration.Save();
+        }
+
+        public void DeleteKit(Kit kit)
+        {
+            KitsPlusPlugin.Instance.Configuration.Instance.Kits.Remove(kit);
+            KitsPlusPlugin.Instance.Configuration.Save();
+        }
+
         public Kit[] GetAllKits()
             => KitsPlusPlugin.Instance.Configuration.Instance.Kits.ToArray();
 

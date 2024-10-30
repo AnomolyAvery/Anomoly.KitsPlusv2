@@ -77,7 +77,9 @@ namespace Anomoly.KitsPlusv2
             {"command_kit_kit_cooldown", "Please wait {0} before redeeming kit \"{1}\" again." },
             {"command_kit_max_usage", "You have used {0}/{0} uses of the \"{1}\" kit!" },
             {"command_kit_redeemed","You've successfully redeemed the kit: \"{0}\"" },
-            {"command_kits","Available Kits: {0}" }
+            {"command_kits","Available Kits: {0}" },
+            {"command_createkit_exists","Kit \"{0}\" already exists." },
+            {"command_createkit_created","The \"{0}\" kit has been created." }
         };
 
         private static bool IsInitialized()

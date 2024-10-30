@@ -19,6 +19,15 @@ namespace Anomoly.KitsPlusv2.Entities
         public KitWeapon() { }
     }
 
+    public enum AttachmentType
+    {
+        SIGHT,
+        BARREL,
+        GRIP,
+        TACTICAL,
+        MAGAZINE
+    }
+
     public class Attachment
     {
         [XmlAttribute("Id")]
