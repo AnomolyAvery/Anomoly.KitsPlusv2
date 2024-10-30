@@ -23,14 +23,14 @@ namespace Anomoly.KitsPlusv2.Commands
         public List<string> Permissions => new List<string>() { "kit" };
 
 
-        private async UniTask ExecuteAsync(IRocketPlayer caller, string[] args)
+        private UniTask ExecuteAsync(IRocketPlayer caller, string[] args)
         {
             string message;
             if(args.Length != 1)
             {
                 message = _plugin.Translate("error_invalid_args", Name, Syntax);
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
-                return;
+                return UniTask.CompletedTask;
             }
 
             var name = args[0];
@@ -40,7 +40,7 @@ namespace Anomoly.KitsPlusv2.Commands
             {
                 message = _plugin.Translate("command_kit_not_found", name);
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
-                return;
+                return UniTask.CompletedTask;
             }
 
             
@@ -51,6 +51,8 @@ namespace Anomoly.KitsPlusv2.Commands
                 message = _plugin.Translate("command_kit_redeemed", kit.Name);
                 ChatUtility.Say(caller, message);
             });
+
+            return UniTask.CompletedTask;
         }
 
         public void Execute(IRocketPlayer caller, string[] args)

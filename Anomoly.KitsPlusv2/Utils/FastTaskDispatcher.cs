@@ -38,7 +38,7 @@ namespace Anomoly.KitsPlusv2.Utils
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogError($"UconomyPlus.TaskDispatcher Error: {ex.Message}");
+                    Logger.LogError($"KitPlusv2.TaskDispatcher Error: {ex.Message}");
                     Logger.LogError(ex.StackTrace);
                 }
             }

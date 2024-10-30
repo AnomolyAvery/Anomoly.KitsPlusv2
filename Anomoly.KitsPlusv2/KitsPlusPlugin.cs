@@ -52,7 +52,7 @@ namespace Anomoly.KitsPlusv2
             Logger.Log($"Initialized Kit repository: {KitRepository.Name}");
 
             Instance = this;
-            Logger.Log($"KitsPlusV2 v{Assembly.GetName().Version} by Anomoly has loaded");
+            Logger.Log($"KitsPlus v{Assembly.GetName().Version} by Anomoly has loaded");
         }
 
         protected override void Unload()
@@ -60,14 +60,15 @@ namespace Anomoly.KitsPlusv2
             base.Unload();
 
             Instance = null;
-            Logger.Log("KitsPlusV2 has unloaded");
+            Logger.Log("KitsPlus has unloaded");
         }
 
         public override TranslationList DefaultTranslations => new TranslationList()
         {
             {"error_invalid_args","Invalid arguments! /{0} {1}" },
             {"command_kit_not_found","Failed to find kit by the name of \"{0}\"." },
-            {"command_kit_redeemed","You've successfully redeemed the kit: \"{0}\"" }
+            {"command_kit_redeemed","You've successfully redeemed the kit: \"{0}\"" },
+            {"command_kits","Available Kits: {0}" }
         };
 
         private static bool IsInitialized()

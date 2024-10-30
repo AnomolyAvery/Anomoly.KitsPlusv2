@@ -1,4 +1,5 @@
 ﻿using Anomoly.KitsPlusv2.Entities;
+using Rocket.API;
 
 namespace Anomoly.KitsPlusv2.Repositories
 {
@@ -7,6 +8,9 @@ namespace Anomoly.KitsPlusv2.Repositories
         string Name { get; }
 
         Kit[] GetAllKits();
+
+        Kit[] GetAllKits(IRocketPlayer player);
+
         Kit GetKitByName(string name);
     }
 }
