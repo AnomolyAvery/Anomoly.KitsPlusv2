@@ -17,10 +17,12 @@ namespace Anomoly.KitsPlusv2
 
         public IKitRepository KitRepository { get; private set; }
         public CooldownManager CooldownManager { get; private set; }
+        public UsageManager UsageManager { get; private set; }
 
         protected override void Load()
         {
             base.Load();
+            Instance = this;
 
             if (!IsInitialized())
             {
@@ -54,8 +56,8 @@ namespace Anomoly.KitsPlusv2
             Logger.Log($"Initialized Kit repository: {KitRepository.Name}");
 
             CooldownManager = new CooldownManager(Configuration.Instance.GlobalCooldownSeconds);
-
-            Instance = this;
+            UsageManager = new UsageManager();
+            
             Logger.Log($"KitsPlus v{Assembly.GetName().Version} by Anomoly has loaded");
         }
 
@@ -73,6 +75,7 @@ namespace Anomoly.KitsPlusv2
             {"command_kit_not_found","Failed to find kit by the name of \"{0}\"." },
             {"command_kit_global_cooldown", "Please wait {0} before redeeming another kit." },
             {"command_kit_kit_cooldown", "Please wait {0} before redeeming kit \"{1}\" again." },
+            {"command_kit_max_usage", "You have used {0}/{0} uses of the \"{1}\" kit!" },
             {"command_kit_redeemed","You've successfully redeemed the kit: \"{0}\"" },
             {"command_kits","Available Kits: {0}" }
         };

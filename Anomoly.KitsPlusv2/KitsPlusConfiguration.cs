@@ -8,11 +8,13 @@ namespace Anomoly.KitsPlusv2
     {
         public string Repository { get; set; }
         public int GlobalCooldownSeconds { get; set; }
+        public bool DisplayKitUsages { get; set; }
         public List<Kit> Kits { get; set; }
         public void LoadDefaults()
         {
             Repository = "default";
             GlobalCooldownSeconds = 10;
+            DisplayKitUsages = true;
             Kits = new List<Kit>()
             {
                 new Kit("Starter", new List<KitItem>()

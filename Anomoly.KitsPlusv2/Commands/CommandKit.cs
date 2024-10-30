@@ -59,6 +59,13 @@ namespace Anomoly.KitsPlusv2.Commands
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
                 return UniTask.CompletedTask;
             }
+
+            if(kit.MaxUsages > 0 && _plugin.UsageManager.GetKitUsage(caller.Id, kit.Name) >= kit.MaxUsages)
+            {
+                message = _plugin.Translate("command_kit_max_usage", kit.MaxUsages, kit.Name);
+                FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
+                return UniTask.CompletedTask;
+            }
             
             FastTaskDispatcher.QueueOnMainThread(() =>
             {
@@ -70,6 +77,8 @@ namespace Anomoly.KitsPlusv2.Commands
 
             _plugin.CooldownManager.SetGlobalCooldown(caller.Id);
             _plugin.CooldownManager.SetKitCooldown(caller.Id, kit.Name);
+            if (kit.MaxUsages > 0)
+                _plugin.UsageManager.AddUsage(caller.Id, kit.Name);
 
             return UniTask.CompletedTask;
         }

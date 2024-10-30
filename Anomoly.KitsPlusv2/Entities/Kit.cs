@@ -17,18 +17,21 @@ namespace Anomoly.KitsPlusv2.Entities
 
         public int Cooldown { get; set; }
 
+        public int MaxUsages { get; set; } = 0;
+
 
         [XmlArray("Items")]
         [XmlArrayItem("Item")]
         public List<KitItem> Items { get; set; }
 
-        public Kit(string name, List<KitItem> items, uint? xp, ushort? vehicle, int cooldown)
+        public Kit(string name, List<KitItem> items, uint? xp, ushort? vehicle, int cooldown, int maxUsages = 0)
         {
             Name = name;
             Items = items;
             XP = xp;
             Vehicle = vehicle;
             Cooldown = cooldown;
+            MaxUsages = maxUsages;
         }
 
         public Kit() { }

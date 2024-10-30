@@ -30,7 +30,18 @@ namespace Anomoly.KitsPlusv2.Commands
         {
             var kits = _plugin.KitRepository.GetAllKits(caller);
 
-            var message = _plugin.Translate("command_kits", string.Join(", ", kits.Select(x => x.Name)));
+            var message = _plugin.Translate("command_kits", string.Join(", ", kits.Select(x =>
+            {
+                string name = x.Name;
+                if(_plugin.Configuration.Instance.DisplayKitUsages && x.MaxUsages > 0)
+                {
+                    var usages = _plugin.UsageManager.GetKitUsage(caller.Id, x.Name);
+                    var left = (x.MaxUsages - usages);
+                    name = $"{name}({left})";
+                }
+
+                return name;
+            })));
 
             FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
 
