@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Anomoly.KitsPlusv2.Repositories;
+using Cysharp.Threading.Tasks;
 using Rocket.API.Collections;
 using Rocket.Core.Logging;
 using Rocket.Core.Plugins;
@@ -9,9 +10,11 @@ using UnityEngine.LowLevel;
 
 namespace Anomoly.KitsPlusv2
 {
-    public class KitsPlusPlugin: RocketPlugin
+    public class KitsPlusPlugin: RocketPlugin<KitsPlusConfiguration>
     {
         public static KitsPlusPlugin Instance { get; private set; }
+
+        public IKitRepository KitRepository { get; private set; }
 
         protected override void Load()
         {
@@ -31,7 +34,25 @@ namespace Anomoly.KitsPlusv2
                 PlayerLoopHelper.Initialize(ref playerLoop);
             }
 
+
+            switch (Configuration.Instance.Repository.ToLower())
+            {
+                case "mysql":
+                    //todo
+                    break;
+                case "default":
+                case "base":
+                case "local":
+                default:
+                    KitRepository = new BaseRepository();
+                    break;
+
+            }
+
+            Logger.Log($"Initialized Kit repository: {KitRepository.Name}");
+
             Instance = this;
+            Logger.Log($"KitsPlusV2 v{Assembly.GetName().Version} by Anomoly has loaded");
         }
 
         protected override void Unload()
@@ -39,11 +60,14 @@ namespace Anomoly.KitsPlusv2
             base.Unload();
 
             Instance = null;
+            Logger.Log("KitsPlusV2 has unloaded");
         }
 
         public override TranslationList DefaultTranslations => new TranslationList()
         {
-            {"","" }
+            {"error_invalid_args","Invalid arguments! /{0} {1}" },
+            {"command_kit_not_found","Failed to find kit by the name of \"{0}\"." },
+            {"command_kit_redeemed","You've successfully redeemed the kit: \"{0}\"" }
         };
 
         private static bool IsInitialized()
@@ -53,6 +77,5 @@ namespace Anomoly.KitsPlusv2
 
             return unitySyncContext != null && mainThreadId != null && (int)mainThreadId == Thread.CurrentThread.ManagedThreadId;
         }
-
     }
 }
