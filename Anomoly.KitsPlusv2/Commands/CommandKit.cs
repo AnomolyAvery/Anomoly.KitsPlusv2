@@ -39,7 +39,7 @@ namespace Anomoly.KitsPlusv2.Commands
             var kit = _plugin.KitRepository.GetKitByName(name);
             if(kit == null || !caller.HasPermission($"kit.{kit.Name.ToLower()}"))
             {
-                message = _plugin.Translate("command_kit_not_found", name);
+                message = _plugin.Translate("error_kit_not_found", name);
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
                 return UniTask.CompletedTask;
             }

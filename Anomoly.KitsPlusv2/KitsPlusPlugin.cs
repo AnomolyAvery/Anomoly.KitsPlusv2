@@ -72,14 +72,15 @@ namespace Anomoly.KitsPlusv2
         public override TranslationList DefaultTranslations => new TranslationList()
         {
             {"error_invalid_args","Invalid arguments! /{0} {1}" },
-            {"command_kit_not_found","Failed to find kit by the name of \"{0}\"." },
+            {"error_kit_not_found","Failed to find kit by the name of \"{0}\"." },
             {"command_kit_global_cooldown", "Please wait {0} before redeeming another kit." },
             {"command_kit_kit_cooldown", "Please wait {0} before redeeming kit \"{1}\" again." },
             {"command_kit_max_usage", "You have used {0}/{0} uses of the \"{1}\" kit!" },
             {"command_kit_redeemed","You've successfully redeemed the kit: \"{0}\"" },
             {"command_kits","Available Kits: {0}" },
             {"command_createkit_exists","Kit \"{0}\" already exists." },
-            {"command_createkit_created","The \"{0}\" kit has been created." }
+            {"command_createkit_created","The \"{0}\" kit has been created." },
+            {"command_deletekit_deleted","Kit \"{0}\" has been deleted." }
         };
 
         private static bool IsInitialized()
