@@ -47,7 +47,7 @@ namespace Anomoly.KitsPlusv2.Commands
             var gCooldown = _plugin.CooldownManager.GetTimeLeftForGlobal(caller.Id);
             if(gCooldown > 0)
             {
-                message = _plugin.Translate("command_kit_global_cooldown", TimeSpan.FromSeconds(gCooldown).ToReadableString());
+                message = _plugin.Translate("error_global_cooldown", TimeSpan.FromSeconds(gCooldown).ToReadableString());
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
                 return UniTask.CompletedTask;
             }
@@ -55,14 +55,14 @@ namespace Anomoly.KitsPlusv2.Commands
             var kCooldown = _plugin.CooldownManager.GetTimeLeftForKit(caller.Id, kit.Name);
             if(kCooldown > 0)
             {
-                message = _plugin.Translate("command_kit_kit_cooldown", TimeSpan.FromSeconds(kCooldown).ToReadableString(),kit.Name);
+                message = _plugin.Translate("error_kit_cooldown", TimeSpan.FromSeconds(kCooldown).ToReadableString(),kit.Name);
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
                 return UniTask.CompletedTask;
             }
 
             if(kit.MaxUsages > 0 && _plugin.UsageManager.GetKitUsage(caller.Id, kit.Name) >= kit.MaxUsages)
             {
-                message = _plugin.Translate("command_kit_max_usage", kit.MaxUsages, kit.Name);
+                message = _plugin.Translate("error_max_usage", kit.MaxUsages, kit.Name);
                 FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
                 return UniTask.CompletedTask;
             }
