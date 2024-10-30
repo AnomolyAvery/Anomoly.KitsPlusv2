@@ -84,7 +84,8 @@ namespace Anomoly.KitsPlusv2
             {"command_deletekit_deleted","Kit \"{0}\" has been deleted." },
             {"command_giftkit_self","You cannot gift a kit to yourself." },
             {"command_giftkit_gifted", "You've gifted the \"{0}\" kit to {1}" },
-            {"command_giftkit_gifted_target", "{0} has gifted you the \"{1}\" kit." }
+            {"command_giftkit_gifted_target", "{0} has gifted you the \"{1}\" kit." },
+            {"command_resetkits","Successfully reset kit {0}!" }
         };
 
         private static bool IsInitialized()

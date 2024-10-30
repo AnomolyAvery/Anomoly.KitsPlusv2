@@ -33,19 +33,10 @@ namespace Anomoly.KitsPlusv2.Managers
             _usages.Instance[key] = _usages.Instance.TryGetValue(key, out var current) ? current + 1 : 1;
         }
 
-        public void DeleteAllUsages(string name)
+        public void ResetUsages()
         {
-            var keys = _usages.Instance.Keys.Where(x => x.EndsWith($"_{name}"));
-
-            int deleted = 0;
-            foreach (var key in keys)
-            {
-                _usages.Instance.Remove(key);
-                deleted++;
-            }
-
-            if (deleted > 0)
-                _usages.Save();
+            _usages.Instance.Clear();
+            _usages.Save();
         }
     }
 }

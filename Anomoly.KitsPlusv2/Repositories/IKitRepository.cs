@@ -15,5 +15,7 @@ namespace Anomoly.KitsPlusv2.Repositories
 
         void DeleteKit(Kit kit);
         void CreateKit(Kit kit);
+
+        void ResetKits();
     }
 }

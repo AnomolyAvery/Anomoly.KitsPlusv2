@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using Rocket.API;
 using Rocket.Unturned.Player;
-using SDG.Unturned;
 using System;
 using System.Collections.Generic;
 

@@ -32,5 +32,10 @@ namespace Anomoly.KitsPlusv2.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void ResetKits()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
