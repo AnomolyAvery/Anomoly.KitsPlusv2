@@ -36,7 +36,10 @@ namespace Anomoly.KitsPlusv2.Managers
         public void ResetUsages()
         {
             _usages.Instance.Clear();
-            _usages.Save();
+            Save();
         }
+
+        public void Save()
+            => _usages.Save();
     }
 }

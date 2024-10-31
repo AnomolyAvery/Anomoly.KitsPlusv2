@@ -7,12 +7,16 @@ namespace Anomoly.KitsPlusv2
     public class KitsPlusConfiguration : IRocketPluginConfiguration
     {
         public string Repository { get; set; }
+
+        public string MySQLConnectionString { get; set; }
+
         public int GlobalCooldownSeconds { get; set; }
         public bool DisplayKitUsages { get; set; }
         public List<Kit> Kits { get; set; }
         public void LoadDefaults()
         {
             Repository = "default";
+            MySQLConnectionString = "Server=localhost;Port=3306;Database=unturned;Uid=root;Pwd=my_password;";
             GlobalCooldownSeconds = 10;
             DisplayKitUsages = true;
             Kits = new List<Kit>()

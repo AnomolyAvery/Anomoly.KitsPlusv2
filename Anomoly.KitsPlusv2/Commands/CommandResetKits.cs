@@ -1,8 +1,6 @@
 ﻿using Anomoly.KitsPlusv2.Utils;
 using Cysharp.Threading.Tasks;
 using Rocket.API;
-using SDG.Unturned;
-using System;
 using System.Collections.Generic;
 
 namespace Anomoly.KitsPlusv2.Commands
@@ -57,13 +55,13 @@ namespace Anomoly.KitsPlusv2.Commands
                 default:
                     message = _plugin.Translate("error_invalid_args", Name, Syntax);
                     FastTaskDispatcher.QueueOnMainThread(() => ChatUtility.Say(caller, message));
-                    return UniTask.CompletedTask;
+                    break;
             }
 
             return UniTask.CompletedTask;
         }
 
         public void Execute(IRocketPlayer caller, string[] args)
-            => ExecuteAsync(caller, args);
+            => UniTask.RunOnThreadPool(() => ExecuteAsync(caller, args));
     }
 }

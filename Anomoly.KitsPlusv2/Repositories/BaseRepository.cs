@@ -2,6 +2,7 @@
 using Rocket.API;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Anomoly.KitsPlusv2.Repositories
 {
@@ -38,5 +39,40 @@ namespace Anomoly.KitsPlusv2.Repositories
             _plugin.Configuration.Instance.Kits.Clear();
             _plugin.Configuration.Save();
         }
+
+        public void Unload() { }
+
+        #region NotImplemented
+        public Task<Kit[]> GetAllKitsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Kit[]> GetAllKitsAsync(IRocketPlayer player)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Kit> GetKitByNameAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteKitAsync(Kit kit)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CreateKitAsync(Kit kit)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ResetKitsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

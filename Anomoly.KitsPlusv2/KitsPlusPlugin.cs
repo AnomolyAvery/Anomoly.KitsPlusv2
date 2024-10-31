@@ -41,8 +41,9 @@ namespace Anomoly.KitsPlusv2
 
             switch (Configuration.Instance.Repository.ToLower())
             {
+                case "db":
                 case "mysql":
-                    //todo
+                    KitRepository = new MySQLRepository(Configuration.Instance.MySQLConnectionString);
                     break;
                 case "default":
                 case "base":
@@ -50,7 +51,6 @@ namespace Anomoly.KitsPlusv2
                 default:
                     KitRepository = new BaseRepository();
                     break;
-
             }
 
             Logger.Log($"Initialized Kit repository: {KitRepository.Name}");
@@ -64,6 +64,10 @@ namespace Anomoly.KitsPlusv2
         protected override void Unload()
         {
             base.Unload();
+
+            UsageManager.Save();
+
+            KitRepository.Unload();
 
             Instance = null;
             Logger.Log("KitsPlus has unloaded");
