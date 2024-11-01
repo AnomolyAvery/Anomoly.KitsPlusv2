@@ -12,8 +12,8 @@ namespace Anomoly.KitsPlusv2.Repositories
     {
         private MySQLDBConnection _db;
 
-        private const string KitsTableSchema = @"
-            CREATE TABLE IF NOT EXISTS `kits` (
+        private string KitsTableSchema = $@"
+            CREATE TABLE IF NOT EXISTS `{KitsPlusPlugin.Instance.Configuration.Instance.MySQLTablePrefix}_kits` (
                 name VARCHAR(255) PRIMARY KEY,
                 xp INT UNSIGNED DEFAULT NULL,
                 vehicle SMALLINT UNSIGNED DEFAULT NULL,
@@ -22,8 +22,8 @@ namespace Anomoly.KitsPlusv2.Repositories
             );
         ";
 
-        private const string KitItemsTableSchema = @"
-            CREATE TABLE IF NOT EXISTS `kit_items` (
+        private string KitItemsTableSchema = $@"
+            CREATE TABLE IF NOT EXISTS `{KitsPlusPlugin.Instance.Configuration.Instance.MySQLTablePrefix}_kit_items` (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 kit_name VARCHAR(255) NOT NULL,
                 item_id SMALLINT UNSIGNED NOT NULL,
