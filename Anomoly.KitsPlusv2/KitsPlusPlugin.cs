@@ -24,7 +24,7 @@ namespace Anomoly.KitsPlusv2
             base.Load();
             Instance = this;
 
-            if (!IsInitialized())
+            if (!IsUniTaskInitialized())
             {
                 var unitySynchronizationContextField = typeof(PlayerLoopHelper).GetField("unitySynchronizationContext", BindingFlags.Static | BindingFlags.NonPublic);
 
@@ -66,7 +66,7 @@ namespace Anomoly.KitsPlusv2
             base.Unload();
 
             UsageManager.Save();
-
+            CooldownManager.Unload();
             KitRepository.Unload();
 
             Instance = null;
@@ -92,7 +92,7 @@ namespace Anomoly.KitsPlusv2
             {"command_resetkits","Successfully reset kit {0}!" }
         };
 
-        private static bool IsInitialized()
+        private static bool IsUniTaskInitialized()
         {
             var unitySyncContext = typeof(PlayerLoopHelper).GetField("unitySynchronizationContext", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);
             var mainThreadId = typeof(PlayerLoopHelper).GetField("mainThreadId", BindingFlags.Static | BindingFlags.NonPublic)?.GetValue(null);

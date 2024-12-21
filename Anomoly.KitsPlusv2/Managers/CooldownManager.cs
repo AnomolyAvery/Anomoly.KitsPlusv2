@@ -20,6 +20,12 @@ namespace Anomoly.KitsPlusv2.Managers
             _kits = new Dictionary<Tuple<string, string>, DateTime>();
         }
 
+        public void Unload()
+        {
+            _global.Clear();
+            _kits.Clear();
+        }
+
         public void SetGlobalCooldown(string playerId)
         {
             if (_globalCooldown <= 0)
